@@ -1,7 +1,4 @@
-# computation caches (regenerated automatically by the notebook / scripts)
-cache_*.pkl
-Final_Integration/cache/
-Track_A_Alpha_Analysis/results/cache/
+# Python bytecode / temporary files (computation caches ARE versioned so the notebook runs fast after cloning)
 __pycache__/
 *.pyc
 *.tmp

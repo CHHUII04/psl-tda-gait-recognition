@@ -25,5 +25,7 @@ and predict the 22 unlabeled windows.
 
 ## Run
 Python 3.11 with `gudhi` (3.13), `numpy` < 2, `scikit-learn`, `scipy`, `pandas`, `matplotlib`, `plotly`.
-Open `TDA_project_solution.ipynb` and run all cells (first run ≈ 40 min: diagrams and distance matrices are then cached as
-`cache_*.pkl`, which are not versioned). Track A: `python Track_A_Alpha_Analysis/scripts/run_all.py`.
+Open `TDA_project_solution.ipynb` and run all cells. Persistence diagrams, distance matrices and parameter sweeps are
+versioned as caches (`cache_*.pkl`, `Final_Integration/cache/`, `Track_A_Alpha_Analysis/results/cache/`), so a run after
+cloning only redoes the classification experiments (≈ 20 min, mostly Section 5b); delete the caches to recompute everything
+from scratch (≈ 40 min). Track A: `python Track_A_Alpha_Analysis/scripts/run_all.py`.
