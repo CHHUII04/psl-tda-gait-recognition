@@ -1,0 +1,8 @@
+feature,corr_with_rms_all,corr_with_rms_within_class_mean,A_mean_of_feature/rms,B_mean_of_feature/rms,C_mean_of_feature/rms,A_std_of_feature/rms,B_std_of_feature/rms,C_std_of_feature/rms
+H0_total_pers,0.9594,0.3987,19.8920,18.4774,19.8049,0.8121,0.8588,1.2098
+H0_max_pers,0.6692,0.1722,0.5313,0.4053,0.4636,0.1190,0.0583,0.0743
+H1_total_pers,0.9256,0.2337,2.7242,2.7610,3.1409,0.2628,0.2399,0.3352
+H1_max_pers,0.8154,0.2158,0.1352,0.1801,0.1844,0.0311,0.0409,0.0394
+H1_max_death,0.8559,0.0912,0.7653,0.6874,0.7275,0.1030,0.0740,0.0786
+H1_n,-0.4893,-0.0764,582.0854,409.2488,311.7027,40.9118,23.3175,33.9159
+rms_radius itself,,,0.5938,0.8081,1.0158,0.0246,0.0228,0.0356

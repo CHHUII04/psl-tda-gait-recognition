@@ -1,0 +1,8 @@
+# computation caches (regenerated automatically by the notebook / scripts)
+cache_*.pkl
+Final_Integration/cache/
+Track_A_Alpha_Analysis/results/cache/
+__pycache__/
+*.pyc
+*.tmp
+.ipynb_checkpoints/

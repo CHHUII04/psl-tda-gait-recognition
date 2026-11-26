@@ -1,0 +1,7 @@
+,max_abs_diff_distance_matrix,max_abs_diff_distance_matrix,bottleneck_H0,bottleneck_H0,bottleneck_H1,bottleneck_H1,max_abs_diff_sorted_lifetimes_H0,max_abs_diff_sorted_lifetimes_H0,max_abs_diff_sorted_lifetimes_H1,max_abs_diff_sorted_lifetimes_H1
+,max,mean,max,mean,max,mean,max,mean,max,mean
+kind,,,,,,,,,,
+centring,8.882e-16,7.401e-16,1.110e-16,8.327e-17,3.886e-16,2.498e-16,1.110e-16,8.327e-17,3.886e-16,2.544e-16
+reflection,1.332e-15,1.184e-15,3.331e-16,2.128e-16,1.443e-15,4.950e-16,3.331e-16,2.128e-16,1.554e-15,4.950e-16
+rotation,1.776e-15,1.162e-15,3.331e-16,1.869e-16,9.992e-16,4.274e-16,3.331e-16,1.869e-16,1.110e-15,4.126e-16
+translation,2.665e-15,1.647e-15,1.207e-15,5.881e-16,3.331e-15,1.832e-15,1.207e-15,5.881e-16,3.331e-15,1.627e-15

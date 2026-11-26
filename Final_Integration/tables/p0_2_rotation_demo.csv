@@ -1,0 +1,6 @@
+method,acc original test,acc rotated test,eval: predictions unchanged after rotation,eval counts A/B/C (original),eval counts A/B/C (rotated)
+baseline: window mean (orientation),1.000,0.310,7/22,"(7, 13, 2)","(3, 12, 7)"
+baseline: xyz mean/std/min/max,1.000,0.554,10/22,"(7, 13, 2)","(6, 11, 5)"
+TDA route A: Alpha on R^3 (silhouette),0.967,0.967,22/22,"(7, 12, 3)","(7, 12, 3)"
+TDA route B: Rips on delay R^9 (silhouette),0.969,0.969,22/22,"(7, 12, 3)","(7, 12, 3)"
+TDA route C: sublevel |a(t)| (silhouette),1.000,1.000,22/22,"(7, 13, 2)","(7, 13, 2)"

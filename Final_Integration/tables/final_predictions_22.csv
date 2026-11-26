@@ -1,0 +1,23 @@
+window,final label (route C),route A (Alpha),route B (delay Rips),all agree
+1,B,B,B,True
+2,C,C,C,True
+3,B,B,B,True
+4,B,B,B,True
+5,A,A,A,True
+6,A,A,A,True
+7,B,B,B,True
+8,C,C,C,True
+9,B,B,B,True
+10,B,B,B,True
+11,B,B,B,True
+12,B,B,B,True
+13,A,A,A,True
+14,B,C,C,False
+15,B,B,B,True
+16,A,A,A,True
+17,B,B,B,True
+18,A,A,A,True
+19,B,B,B,True
+20,A,A,A,True
+21,A,A,A,True
+22,B,B,B,True

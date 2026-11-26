@@ -1,0 +1,182 @@
+
+======================================================================
+>>> 01_data_audit.py
+======================================================================
+train (240, 200, 3) eval (22, 200, 3)
+label distribution: {'A': 80, 'B': 80, 'C': 80}
+   subset  n_windows  n_nan  n_inf  norm_mean  norm_std  norm_min  norm_max  max_duplicate_points_in_window
+train_all        240      0      0   1.193743  0.537175  0.047392  3.471403                               0
+  train_A         80      0      0   1.090330  0.428637  0.205803  2.788663                               0
+  train_B         80      0      0   1.170878  0.549043  0.076595  2.996174                               0
+  train_C         80      0      0   1.320022  0.594416  0.047392  3.471403                               0
+     eval         22      0      0   1.162531  0.530721  0.076595  3.227067                               0
+
+per-class mean of per-window statistics:
+       mean_x  mean_y  mean_z  norm_mean  norm_std  rms_radius
+label                                                         
+A       0.183   0.985   0.083      1.090     0.428       0.594
+B      -0.431   0.911  -0.046      1.171     0.549       0.808
+C       0.393   0.953  -0.007      1.320     0.594       1.016
+
+window overlap: {'distinct_train_points': 10426, 'points_in_more_than_one_window': 9968, 'eval_points_found_in_train': 4381, 'eval_points_total': 4400}
+--- 01_data_audit.py done in 3.5s
+
+======================================================================
+>>> 02_visualize_data.py
+======================================================================
+representatives: {'A': [26, 52], 'B': [106, 132], 'C': [186, 212]}
+  figure -> figures\02_xyz_timeseries.png
+  figure -> figures\02_norm_timeseries.png
+  figure -> figures\02_3d_trajectories.png
+  figure -> figures\02_classes_side_by_side.png
+--- 02_visualize_data.py done in 12.8s
+
+======================================================================
+>>> 03_rotation_invariance.py
+======================================================================
+            max_abs_diff_distance_matrix          bottleneck_H0          bottleneck_H1          max_abs_diff_sorted_lifetimes_H0          max_abs_diff_sorted_lifetimes_H1         
+                                     max     mean           max     mean           max     mean                              max     mean                              max     mean
+kind                                                                                                                                                                               
+centring                        8.88e-16 7.40e-16      1.11e-16 8.33e-17      3.89e-16 2.50e-16                         1.11e-16 8.33e-17                         3.89e-16 2.54e-16
+reflection                      1.33e-15 1.18e-15      3.33e-16 2.13e-16      1.44e-15 4.95e-16                         3.33e-16 2.13e-16                         1.55e-15 4.95e-16
+rotation                        1.78e-15 1.16e-15      3.33e-16 1.87e-16      9.99e-16 4.27e-16                         3.33e-16 1.87e-16                         1.11e-15 4.13e-16
+translation                     2.66e-15 1.65e-15      1.21e-15 5.88e-16      3.33e-15 1.83e-15                         1.21e-15 5.88e-16                         3.33e-15 1.63e-15
+all point counts preserved: True
+  figure -> figures\03_rotation_invariance.png
+--- 03_rotation_invariance.py done in 13.0s
+
+======================================================================
+>>> 04_alpha_persistence.py
+======================================================================
+[train] cached diagrams found -> train_diagrams_sqradius.pkl
+[eval] cached diagrams found -> eval_diagrams_sqradius.pkl
+
+Alpha complex statistics (mean over training windows):
+seconds              0.0269
+n_vertices         200.0000
+n_0simplices       200.0000
+n_1simplices      1375.5583
+n_2simplices      2327.1292
+n_3simplices      1150.5708
+n_intervals_H0     200.0000
+n_intervals_H1     330.5000
+n_intervals_H2     117.8792
+n_essential_H0       1.0000
+n_essential_H1       0.0000
+n_essential_H2       0.0000
+total time train (s): 6.45
+essential intervals: exactly one in H0 (birth 0) per window, none in H1/H2 -> OK
+max |H0 death - MST edge/2| over 10 windows: 6.94e-17
+
+class-wise lifetime statistics (radius scale):
+                      A_mean    A_std    B_mean    B_std    C_mean    C_std  kruskal_wallis_p
+H0_n                199.0000   0.0000  199.0000   0.0000  199.0000   0.0000               NaN
+H0_total_pers        11.8095   0.6262   14.9332   0.8496   20.0926   0.9728            0.0000
+H0_max_pers           0.3149   0.0679    0.3274   0.0474    0.4716   0.0825            0.0000
+H0_mean_pers          0.0593   0.0031    0.0750   0.0043    0.1010   0.0049            0.0000
+H0_entropy            5.0403   0.0304    5.0915   0.0145    5.0941   0.0223            0.0000
+H1_n                345.2000  21.4089  330.4875  17.4298  315.8125  27.8773            0.0000
+H1_total_pers         1.6176   0.1675    2.2322   0.2171    3.1850   0.3029            0.0000
+H1_max_pers           0.0802   0.0184    0.1456   0.0339    0.1876   0.0412            0.0000
+H1_mean_pers          0.0047   0.0004    0.0068   0.0006    0.0101   0.0008            0.0000
+H1_entropy            4.8417   0.1073    4.7182   0.1099    4.6329   0.1543            0.0000
+H1_ratio_top1_top2    1.3327   0.3089    1.4130   0.4249    1.2710   0.2670            0.1112
+H1_max_death          0.4537   0.0579    0.5551   0.0582    0.7389   0.0836            0.0000
+  figure -> figures\04_alpha_diagrams_representatives.png
+  figure -> figures\04_lifetime_distributions.png
+  figure -> figures\04_summary_statistics_by_class.png
+  figure -> figures\04_dominant_loop_geometry.png
+
+eval diagrams saved: 22 windows -> evaluation_diagrams/
+--- 04_alpha_persistence.py done in 22.6s
+
+======================================================================
+>>> 05_bottleneck_distances.py
+======================================================================
+essential intervals: one (0, inf) per H0 diagram; bottleneck with/without it identical (checked)
+H0: computing 240x240 bottleneck matrix ...
+  bottleneck_H0:  10.5% of pairs  (11s)
+  bottleneck_H0:  20.5% of pairs  (13s)
+  bottleneck_H0:  30.5% of pairs  (15s)
+  bottleneck_H0:  40.6% of pairs  (17s)
+  bottleneck_H0:  50.4% of pairs  (19s)
+  bottleneck_H0:  60.4% of pairs  (21s)
+  bottleneck_H0:  70.2% of pairs  (23s)
+  bottleneck_H0:  80.2% of pairs  (26s)
+  bottleneck_H0:  90.3% of pairs  (28s)
+  bottleneck_H0: 100.0% of pairs  (31s)
+  bottleneck_H0: symmetric, zero diagonal, finite; off-diagonal min=0.0019 median=0.1110 max=0.3673; #zero off-diag=0
+H1: computing 240x240 bottleneck matrix ...
+  bottleneck_H1:  10.5% of pairs  (22s)
+  bottleneck_H1:  20.5% of pairs  (34s)
+  bottleneck_H1:  30.5% of pairs  (47s)
+  bottleneck_H1:  40.6% of pairs  (57s)
+  bottleneck_H1:  50.5% of pairs  (76s)
+  bottleneck_H1:  60.4% of pairs  (85s)
+  bottleneck_H1:  70.2% of pairs  (95s)
+  bottleneck_H1:  80.2% of pairs  (108s)
+  bottleneck_H1:  90.1% of pairs  (121s)
+  bottleneck_H1: 100.0% of pairs  (134s)
+  bottleneck_H1: symmetric, zero diagonal, finite; off-diagonal min=0.0035 median=0.0697 max=0.1431; #zero off-diag=0
+saved -> results/distance_matrices/
+--- 05_bottleneck_distances.py done in 168.6s
+
+======================================================================
+>>> 06_class_analysis.py
+======================================================================
+  figure -> figures\06_bottleneck_heatmaps.png
+MEAN bottleneck distance
+              A-A     B-B     C-C     A-B     A-C     B-C
+homology                                                
+H0        0.0875  0.0673  0.1144  0.0824  0.1858  0.1691
+H1        0.0379  0.0617  0.0775  0.0661  0.0895  0.0809
+
+MEDIAN bottleneck distance
+              A-A     B-B     C-C     A-B     A-C     B-C
+homology                                                
+H0        0.0765  0.0595  0.0989  0.0724  0.1776  0.1585
+H1        0.0367  0.0611  0.0727  0.0655  0.0889  0.0790
+
+           within mean  between mean  between/within ratio  silhouette (all)  silhouette A  silhouette B  silhouette C
+homology                                                                                                             
+H0              0.090         0.146                 1.625             0.130        -0.071         0.178         0.283
+H1              0.059         0.079                 1.335             0.158         0.425         0.024         0.026
+
+fraction of windows whose nearest diagram has the same label: {'H0': 0.9166666666666666, 'H1': 0.9541666666666667} 
+(descriptive only; overlapping windows inflate this number)
+  figure -> figures\06_within_between_distances.png
+  figure -> figures\06_mds_H0_H1.png
+
+MDS Kruskal stress-1: {'H0': 0.119, 'H1': 0.263}
+--- 06_class_analysis.py done in 93.8s
+
+======================================================================
+>>> 07_robustness.py
+======================================================================
+9.1 random rotation of all 240 windows - bottleneck(original, rotated):
+      bottleneck_H0  bottleneck_H1
+max        3.89e-16       5.01e-14
+mean       1.97e-16       1.15e-15
+
+9.2 subsampling (80% of points, 5 repeats, 12 windows):
+homology                               H0      H1
+mean d_B(full, 80%)                0.0532  0.0434
+median                             0.0363  0.0417
+max                                0.2740  0.0854
+median within-class d_B            0.0762  0.0577
+median between-class d_B           0.1351  0.0775
+mean ratio to within-class median  0.6974  0.7529
+mean max-persistence full          0.3889  0.1217
+mean max-persistence 80%           0.4078  0.1245
+
+per class mean d_B(full, 80%):
+       bottleneck_H0  bottleneck_H1
+label                              
+A             0.0334         0.0294
+B             0.0494         0.0477
+C             0.0767         0.0532
+  figure -> figures\07_subsampling_robustness.png
+  figure -> figures\07_rotation_all_windows.png
+--- 07_robustness.py done in 104.5s
+
+all steps completed
