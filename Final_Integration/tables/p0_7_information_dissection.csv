@@ -1,0 +1,7 @@
+,raw,amplitude removed,time shuffled,amplitude removed + shuffled
+"amplitude: mean, std of |a|",1.000,0.279,1.000,0.279
+quantiles of |a|,1.000,0.907,1.000,0.907
+autocorrelation of |a|,1.000,1.000,0.299,0.299
+TDA A: Alpha (cloud),0.967,0.690,0.967,0.690
+"TDA B: delay Rips, lag 8",1.000,0.823,1.000,0.679
+TDA C: sublevel of |a|,1.000,0.901,1.000,0.886

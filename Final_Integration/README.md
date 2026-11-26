@@ -73,3 +73,25 @@ Test windows rotated by an angle growing from 0 to θ during the window (blocked
 
 Window #14 has 47° of drift (angle between the gravity directions of its first 25 and last 100 samples); training windows:
 median 1–4°, 95 % ≤ 9°. Drifting windows are pushed towards C by routes A/B → the #14 disagreement is explained; final label B.
+
+**P0-6 amplitude control** (`p0_6_amplitude_control.py`, `tables/p0_6_amplitude_control.csv`)
+
+Amplitude alone already classifies perfectly: mean + std of |a(t)| → 1.000, RMS radius of the cloud (one number) → 1.000.
+After removing the amplitude of every window (|a| z-scored, cloud scaled to RMS radius 1): TDA C 0.901, B 0.823,
+A 0.690 (chance 0.33) — topology keeps shape information, but the autocorrelation of |a| (rhythm) stays at 1.000.
+
+**P0-7 information dissection** (`p0_7_information_dissection.py`, `tables/p0_7_information_dissection.csv`,
+`figures/p0_7_information_dissection.png`) — blocked CV accuracy
+
+| representation | raw | amplitude removed | time shuffled | amplitude removed + shuffled |
+|---|---|---|---|---|
+| amplitude: mean, std of ‖a‖ | 1.000 | 0.279 | 1.000 | 0.279 |
+| quantiles of ‖a‖ | 1.000 | 0.907 | 1.000 | 0.907 |
+| autocorrelation of ‖a‖ | 1.000 | 1.000 | 0.299 | 0.299 |
+| TDA A: Alpha (cloud) | 0.967 | 0.690 | 0.967 | 0.690 |
+| TDA B: delay Rips, lag 8 | 1.000 | 0.823 | 1.000 | 0.679 |
+| TDA C: sublevel of ‖a‖ | 1.000 | 0.901 | 1.000 | 0.886 |
+
+Reading: Alpha ignores time (unchanged by shuffling); delay Rips is the only topological route that uses temporal
+structure (0.823 → 0.679 when shuffled, down to the Alpha level); route C uses amplitude + value distribution
+(≈ quantiles), almost no temporal shape; rhythm is captured best by the (non-topological) autocorrelation.
