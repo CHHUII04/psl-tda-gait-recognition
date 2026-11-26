@@ -2,7 +2,7 @@
 
 Three topological routes, all rotation invariant:
   A  Alpha complex on the raw cloud {a(t)} in R^3                (radius scale r = sqrt(alpha^2))
-  B  Vietoris-Rips on the delay embedding (a(t), a(t+l), a(t+2l)) in R^9, l = 2
+  B  Vietoris-Rips on the delay embedding (a(t), a(t+l), a(t+2l)) in R^9, l = 2  (B8: l = 8)
   C  sublevel / superlevel filtration of |a(t)| on the path graph (H0 of valleys / peaks)
 Evaluation: blocked & purged 5-fold CV (windows overlap in time, see window_offsets).
 """
@@ -29,9 +29,15 @@ LAG = 2
 
 ROUTES = {
     "A: Alpha on R^3": ["H0", "H1"],
-    "B: Rips on delay R^9": ["H0", "H1"],
+    "B: Rips on delay R^9": ["H0", "H1"],                    # lag 2 (default of Question 4)
+    "B8: Rips on delay R^9, lag 8": ["H0", "H1"],            # lag 8 (best window in the lag sweep, Section 5d)
     "C: sublevel |a(t)|": ["H0 valleys", "H0 peaks"],
 }
+
+
+def key(route):
+    """short cache key: 'A', 'B', 'B8', 'C'"""
+    return route.split(":")[0]
 
 
 def load():
@@ -59,6 +65,10 @@ def diag_rips_delay(w, lag=LAG):
     return [_finite(st.persistence_intervals_in_dimension(k)) for k in (0, 1)]
 
 
+def diag_rips_delay8(w):
+    return diag_rips_delay(w, lag=8)
+
+
 def _sublevel_h0(f):
     st = gd.SimplexTree()
     for i, v in enumerate(f): st.insert([i], v)
@@ -72,7 +82,7 @@ def diag_norm_sublevel(w):
 
 
 ROUTE_FN = {"A: Alpha on R^3": diag_alpha, "B: Rips on delay R^9": diag_rips_delay,
-            "C: sublevel |a(t)|": diag_norm_sublevel}
+            "B8: Rips on delay R^9, lag 8": diag_rips_delay8, "C: sublevel |a(t)|": diag_norm_sublevel}
 
 
 def _job(args):
@@ -138,9 +148,9 @@ def vectorizer(kind):
     raise ValueError(kind)
 
 
-def model(dims, kind="landscape"):
+def model(dims, kind="landscape", seed=0):
     feats = make_union(*[make_pipeline(DimSelect(k), gdr.DiagramSelector(use=True), vectorizer(kind)) for k in dims])
-    return make_pipeline(feats, RandomForestClassifier(n_estimators=300, random_state=0, n_jobs=-1))
+    return make_pipeline(feats, RandomForestClassifier(n_estimators=300, random_state=seed, n_jobs=-1))
 
 
 def cv_scores(D, y, splits, dims, kind="landscape"):

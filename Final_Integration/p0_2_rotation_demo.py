@@ -15,7 +15,7 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
-from final_utils import (FIG, TAB, blocked_purged_splits, compute_diagrams, load, model, random_rotations)
+from final_utils import (key, FIG, TAB, blocked_purged_splits, compute_diagrams, load, model, random_rotations)
 
 BEST = {"A: Alpha on R^3": ((0, 1), "silhouette"), "B: Rips on delay R^9": ((0, 1), "silhouette"),
         "C: sublevel |a(t)|": ((0, 1), "silhouette")}
@@ -36,8 +36,8 @@ def main():
 
     D, Dr = {}, {}
     for r in BEST:
-        D[r] = compute_diagrams(r, XE, "orig_" + r[0])
-        Dr[r] = compute_diagrams(r, XE_rot, "rot_" + r[0])
+        D[r] = compute_diagrams(r, XE, "orig_" + key(r))
+        Dr[r] = compute_diagrams(r, XE_rot, "rot_" + key(r))
         print(r, "diagrams ready", flush=True)
 
     rows, preds = [], {}

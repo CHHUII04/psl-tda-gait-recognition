@@ -1,0 +1,19 @@
+drift angle (deg),route,accuracy,fraction predicted C
+0,"A (Alpha, R^3)",0.967,0.309
+0,"B (delay Rips, lag 8)",1.000,0.328
+0,C (|a(t)| sublevel),1.000,0.328
+15,"A (Alpha, R^3)",0.959,0.318
+15,"B (delay Rips, lag 8)",0.995,0.328
+15,C (|a(t)| sublevel),1.000,0.328
+30,"A (Alpha, R^3)",0.766,0.378
+30,"B (delay Rips, lag 8)",0.983,0.332
+30,C (|a(t)| sublevel),1.000,0.328
+45,"A (Alpha, R^3)",0.531,0.523
+45,"B (delay Rips, lag 8)",0.941,0.356
+45,C (|a(t)| sublevel),1.000,0.328
+60,"A (Alpha, R^3)",0.404,0.621
+60,"B (delay Rips, lag 8)",0.816,0.455
+60,C (|a(t)| sublevel),1.000,0.328
+90,"A (Alpha, R^3)",0.343,0.720
+90,"B (delay Rips, lag 8)",0.519,0.594
+90,C (|a(t)| sublevel),1.000,0.328

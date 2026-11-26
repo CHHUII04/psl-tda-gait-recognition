@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from final_utils import COLORS, FIG, TAB, compute_diagrams, load, model
+from final_utils import key, COLORS, FIG, TAB, compute_diagrams, load, model
 
 FINAL = "C: sublevel |a(t)|"
 
@@ -17,7 +17,7 @@ def predictions():
     XE = np.concatenate([X, E])
     P = {}
     for r in ["C: sublevel |a(t)|", "A: Alpha on R^3", "B: Rips on delay R^9"]:
-        D = compute_diagrams(r, XE, "orig_" + r[0])
+        D = compute_diagrams(r, XE, "orig_" + key(r))
         P[r] = model((0, 1), "silhouette").fit(D[:240], y).predict(D[240:])
     df = pd.DataFrame({"window": np.arange(1, 23), "final label (route C)": P[FINAL],
                        "route A (Alpha)": P["A: Alpha on R^3"], "route B (delay Rips)": P["B: Rips on delay R^9"]})

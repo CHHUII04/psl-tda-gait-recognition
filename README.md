@@ -10,8 +10,11 @@ and predict the 22 unlabeled windows.
 | route | representation | filtration | blocked-CV accuracy |
 |---|---|---|---|
 | A (subject, Method A) | raw cloud {a(t)} ⊂ R³ | Alpha | ≈ 0.96–0.97 |
-| B (subject, Method B) | delay vectors (a(t), a(t+ℓ), a(t+2ℓ)) ∈ R⁹ | Vietoris–Rips | ≈ 0.95–0.97 |
+| B (subject, Method B) | delay vectors (a(t), a(t+ℓ), a(t+2ℓ)) ∈ R⁹ | Vietoris–Rips | ≈ 0.97 (ℓ = 2), 1.00 (ℓ = 8) |
 | C (final model) | ‖a(t)‖ | sub/superlevel filtration on the path graph, H0 | 1.00 |
+
+All 22 predictions have probability ≥ 0.98 and are stable over 20 random seeds. The only disagreement between routes
+(window #14) comes from the phone rotating *during* that window (47°): only route C (‖a‖) is invariant to such a drift.
 
 ## Where to look
 
